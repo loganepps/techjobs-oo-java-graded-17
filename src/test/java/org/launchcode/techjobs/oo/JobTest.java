@@ -10,6 +10,7 @@ public class JobTest {
     public void testSettingJobId() {
         Job job1 = new Job();
         Job job2 = new Job();
+
         assertNotEquals(0, job2.getId() - job1.getId());
     }
 
@@ -20,6 +21,7 @@ public class JobTest {
             new Location("Desert"),
             new PositionType("Quality control"),
             new CoreCompetency("Persistence"));
+
         assertTrue(job.getName() instanceof String);
         assertEquals("Product tester", job.getName());
         assertTrue(job.getEmployer() instanceof Employer);
@@ -39,11 +41,13 @@ public class JobTest {
                 new Location("Desert"),
                 new PositionType("Quality control"),
                 new CoreCompetency("Persistence"));
+
         Job job2 = new Job("Product tester",
                 new Employer("ACME"),
                 new Location("Desert"),
                 new PositionType("Quality control"),
                 new CoreCompetency("Persistence"));
+
         assertNotEquals(true, job1.equals(job2));
     }
 
@@ -55,6 +59,21 @@ public class JobTest {
                 new Location("Desert"),
                 new PositionType("Quality control"),
                 new CoreCompetency("Persistence"));
+
+        String jobString = job.toString();
+        assertEquals(nL, jobString.substring(0, nL.length()));
+        assertEquals(nL, jobString.substring(jobString.length() - nL.length()));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        String nL = System.lineSeparator();
+        Job job = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
+
         String expected = nL +
                 "ID: " + 1 + nL +
                 "Name: " + "Product tester" + nL +
@@ -66,19 +85,36 @@ public class JobTest {
     }
 
     @Test
-    public void testTestToStringStartsAndEndsWithNewLine() {
+    public void testToStringHandlesEmptyField() {
         String nL = System.lineSeparator();
-        Job job = new Job("Product tester",
-                new Employer("ACME"),
-                new Location("Desert"),
-                new PositionType("Quality control"),
-                new CoreCompetency("Persistence"));
-        String jobString = job.toString();
-        String[] jobStringSplit = jobString.split(nL);
-        int n = jobStringSplit.length;
-//        assertEquals(nL, jobString[0]);
-//        assertEquals(nL, jobString.charAt(n-1));
+        Job job = new Job("",
+                new Employer(""),
+                new Location("Somewhere"),
+                new PositionType(""),
+                new CoreCompetency(""));
+
+        String expected = nL +
+                "ID: " + job.getId() + nL +
+                "Name: Data not available" + nL +
+                "Employer: Data not available" + nL +
+                "Location: Somewhere" + nL +
+                "Position Type: Data not available" + nL +
+                "Core Competency: Data not available" + nL;
+
+        assertEquals(expected, job.toString());
     }
 
+    @Test
+    public void testToStringHandlesOnlyIdHasData() {
+        String nL = System.lineSeparator();
+        Job job = new Job("",
+                new Employer(""),
+                new Location(""),
+                new PositionType(""),
+                new CoreCompetency(""));
+
+        String expected = "OOPS! This job does not seem to exist.";
+        assertEquals(expected, job.toString());
+    }
 
 }

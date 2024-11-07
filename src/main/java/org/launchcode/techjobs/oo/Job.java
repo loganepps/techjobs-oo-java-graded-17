@@ -30,20 +30,27 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
-    @Override
     public String toString() {
+        if ((name == null || name.trim().isEmpty()) &&
+            (employer == null || employer.toString().trim().isEmpty()) &&
+            (location == null || location.toString().trim().isEmpty()) &&
+            (positionType == null || positionType.toString().trim().isEmpty()) &&
+            (coreCompetency == null || coreCompetency.toString().trim().isEmpty())) {
+            return "OOPS! This job does not seem to exist.";
+        }
         String nL = System.lineSeparator();
         return nL +
                 "ID: " + this.id + nL +
-                "Name: " + this.name + nL +
-                "Employer: " + this.employer + nL +
-                "Location: " + this.location + nL +
-                "Position Type: " + this.positionType + nL +
-                "Core Competency: " + this.coreCompetency
+                "Name: " + (this.name == null || this.name.trim().isEmpty() ? "Data not available" : this.name) + nL +
+                "Employer: " + (this.employer == null || this.employer.toString().trim().isEmpty() ? "Data not available" : this.employer) + nL +
+                "Location: " + (this.location == null || this.location.toString().trim().isEmpty() ? "Data not available" : this.location) + nL +
+                "Position Type: " + (this.positionType == null || this.positionType.toString().trim().isEmpty() ? "Data not available" : this.positionType) + nL +
+                "Core Competency: " + (this.coreCompetency == null || this.coreCompetency.toString().trim().isEmpty() ? "Data not available" : this.coreCompetency)
                 + nL;
     }
+
+    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+    //  match.
 
     @Override
     public boolean equals(Object o) {
