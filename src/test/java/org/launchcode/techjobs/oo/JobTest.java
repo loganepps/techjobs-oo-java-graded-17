@@ -75,7 +75,7 @@ public class JobTest {
                 new CoreCompetency("Persistence"));
 
         String expected = nL +
-                "ID: " + 1 + nL +
+                "ID: " + job.getId() + nL +
                 "Name: " + "Product tester" + nL +
                 "Employer: " + "ACME" + nL +
                 "Location: " + "Desert" + nL +
@@ -105,7 +105,7 @@ public class JobTest {
     }
 
     @Test
-    public void testToStringHandlesOnlyIdHasData() {
+    public void testToStringHandlesOnlyIdFieldHasData() {
         String nL = System.lineSeparator();
         Job job = new Job("",
                 new Employer(""),
