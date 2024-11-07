@@ -47,5 +47,38 @@ public class JobTest {
         assertNotEquals(true, job1.equals(job2));
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        String nL = System.lineSeparator();
+        Job job = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
+        String expected = nL +
+                "ID: " + 1 + nL +
+                "Name: " + "Product tester" + nL +
+                "Employer: " + "ACME" + nL +
+                "Location: " + "Desert" + nL +
+                "Position Type: " + "Quality control" + nL +
+                "Core Competency: " + "Persistence" + nL;
+        assertEquals(expected, job.toString());
+    }
+
+    @Test
+    public void testTestToStringStartsAndEndsWithNewLine() {
+        String nL = System.lineSeparator();
+        Job job = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
+        String jobString = job.toString();
+        String[] jobStringSplit = jobString.split(nL);
+        int n = jobStringSplit.length;
+//        assertEquals(nL, jobString[0]);
+//        assertEquals(nL, jobString.charAt(n-1));
+    }
+
 
 }

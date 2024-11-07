@@ -1,4 +1,7 @@
 package org.launchcode.techjobs.oo;
+
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -14,6 +17,16 @@ public class Main {
 //        for (Job job : jobs){
 //            System.out.println(job);
 //        }
+
+        //TESTING TESTING
+//        Job job = new Job("Cool Job", new Employer("Bob"), new Location("Cool City"), new PositionType("Cool Position"), new CoreCompetency("Cool Skill"));
+//        String nL = System.lineSeparator();
+//        String jobString = job.toString();
+//        String[] jobStringSplit = jobString.split(nL);
+//        int n = jobStringSplit.length;
+//        System.out.println(jobString.charAt(0));
+//        System.out.println(jobString.charAt(n-1));
+//        System.out.println(Arrays.toString(jobStringSplit));
     }
 
 }
